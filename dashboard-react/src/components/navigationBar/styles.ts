@@ -17,7 +17,7 @@ export const Header = styled.header`
 `;
 
 export const Title = styled.h3`
-    color:#FFF;
+    color:#EED7CE;
     margin-left: 5px;
 `;
 
