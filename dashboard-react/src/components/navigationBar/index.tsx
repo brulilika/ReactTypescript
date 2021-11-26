@@ -19,13 +19,13 @@ const NavigationBar: React.FC = () => {
             </Header>
 
             <MenuContainer>
-                <MenuItemLink href="#"> 
+                <MenuItemLink href="/dashboard"> 
                     <MdDashboard/> Dashboard
                 </MenuItemLink>
-                <MenuItemLink href="#"> 
+                <MenuItemLink href="/list/entry-balance"> 
                     <MdArrowDownward/> Entrada
                 </MenuItemLink>
-                <MenuItemLink href="#"> 
+                <MenuItemLink href="/list/exit-balance"> 
                     <MdArrowUpward/>Saida
                 </MenuItemLink>
                 <MenuItemLink href="#"> 
