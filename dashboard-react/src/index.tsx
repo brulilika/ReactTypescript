@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Dashboard from './pages/dashboard'
+import Layout from './components/layout'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Dashboard />
+    <Layout />
   </React.StrictMode>,
   document.getElementById('root')
 );
