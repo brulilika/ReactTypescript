@@ -10,6 +10,7 @@ import happyImg from '../../assets/happy.svg';
 import sadImg from '../../assets/sad.svg';
 import grinningImg from '../../assets/happy.svg';
 import opsImg from '../../assets/sad.svg';
+import PieChartBox from '../../components/pieCharBox';
 
 const Dashboard : React.FC = () => {
 
@@ -68,6 +69,30 @@ const Dashboard : React.FC = () => {
 
     },[totalBalance, totalGains, totalExpenses]);
 
+    const relationExpensesVersusGains = useMemo(() => {
+        const total = totalGains + totalExpenses;
+
+        const percentGains = Number(((totalGains / total) * 100).toFixed(1));
+        const percentExpenses = Number(((totalExpenses / total) * 100).toFixed(1));
+
+        const data = [
+            {
+                name: "Entradas",
+                value: totalGains,
+                percent: percentGains ? percentGains : 0, 
+                color: '#BCCC9A'
+            },
+            {
+                name: "Saídas",
+                value: totalExpenses,
+                percent: percentExpenses ? percentExpenses : 0, 
+                color: '#C37B89'
+            },
+        ];
+
+        return data;
+    },[totalGains, totalExpenses]);
+
     //O retorno aqui deve ser em "pacote" unico
     return (
         <Container>       
@@ -111,6 +136,8 @@ const Dashboard : React.FC = () => {
                     footerText={message.footerText}
                     icon={message.icon}
                 />
+
+                <PieChartBox data={relationExpensesVersusGains} />
 
             </Content>
 
