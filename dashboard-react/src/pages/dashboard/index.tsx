@@ -1,26 +1,63 @@
-import React from 'react'
-import {Container} from './styles'
+import React, { useState, useMemo, useCallback } from 'react';
 import ContentHeader from '../../components/contentHeader'
-import SelectInput from '../../components/selectInput'
+import WalletBox from '../../components/walletBox'
+import {Container,Content } from './styles'
+
+import expenses from '../../expenses/expenses';
+import gains from '../../expenses/gains';
+
 const Dashboard : React.FC = () => {
-    const pessoas = [
-        {value:'Bruna', label: 'Bruna'},
-        {value:'Lika', label: 'Lika'},
-        {value:'Tamake', label: 'Tamake'},
-    ]
-    const alimentos = [
-        {value:'Banana', label: 'Banana'},
-        {value:'Caju', label: 'Caju'},
-        {value:'Carne', label: 'Carne'},
-    ]
+
+    const totalExpenses = useMemo(() => {
+        let total: number = 0;
+
+        expenses.forEach((item: { amount: string; }) => {total += Number(item.amount) });
+        return total;
+    },[]);
+
+
+    const totalGains = useMemo(() => {
+        let total: number = 0;
+
+        gains.forEach((item: { amount: string; }) => { total += Number(item.amount) });
+        return total;
+    },[]);
+
+    const totalBalance = useMemo(() => {
+        return totalGains - totalExpenses;
+    },[totalGains, totalExpenses]);
+
     //O retorno aqui deve ser em "pacote" unico
     return (
         <Container>       
             <ContentHeader title='Dashboard' lineColor='#ff87c9e1'>
-                {/* <SelectInput options={pessoas}/>
-                <SelectInput options={alimentos}/> */}
             </ContentHeader>
-            <h2>Conteudop de Dash</h2>
+            <Content>
+                <WalletBox 
+                        title="Saldo"
+                        color="#F0C7DE"
+                        amount={totalBalance}
+                        footerlabel="atualizado com base nas entradas e saídas"
+                        icon="dolar"
+                    />
+
+                    <WalletBox 
+                        title="Entradas"
+                        color="#ED7EBB"
+                        amount={totalGains}
+                        footerlabel="atualizado com base nas entradas e saídas"
+                        icon="arrowUp"
+                    />
+
+                    <WalletBox 
+                        title="Saídas"
+                        color="#BA6393"
+                        amount={totalExpenses}
+                        footerlabel="atualizado com base nas entradas e saídas"
+                        icon="arrowDown"
+                    />
+            </Content>
+
         </Container>
     )
 }
