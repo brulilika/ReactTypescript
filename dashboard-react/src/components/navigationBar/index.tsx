@@ -22,10 +22,10 @@ const NavigationBar: React.FC = () => {
                 <MenuItemLink href="/dashboard"> 
                     <MdDashboard/> Dashboard
                 </MenuItemLink>
-                <MenuItemLink href="/list/entry-balance"> 
+                <MenuItemLink href="/list/income"> 
                     <MdArrowDownward/> Entrada
                 </MenuItemLink>
-                <MenuItemLink href="/list/exit-balance"> 
+                <MenuItemLink href="/list/outcome"> 
                     <MdArrowUpward/>Saida
                 </MenuItemLink>
                 <MenuItemLink href="#"> 

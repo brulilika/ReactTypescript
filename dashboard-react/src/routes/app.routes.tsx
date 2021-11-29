@@ -9,7 +9,17 @@ const AppRoutes: React.FC = () => (
     <Layout>
         <Routes>
             <Route path='/dashboard' element={<Dashboard/>} />
-            <Route path='/list/:type' element={<List/>}/>
+            <Route path='/list/income' element={<List match={{
+                params: {
+                    type: 'income'
+                }
+            }}/>}/>
+
+            <Route path='/list/outcome' element={<List match={{
+                params: {
+                    type: 'outcome'
+                }
+            }}/>}/>
         </Routes>
     </Layout>
 );
